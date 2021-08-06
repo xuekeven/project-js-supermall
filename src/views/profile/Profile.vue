@@ -1,13 +1,24 @@
 <template>
-  <h2>我的</h2>
+  <div class="">
+  </div>
 </template>
 
 <script>
-export default {
+import Scroll from 'components/common/scroll/Scroll';
 
+export default {
+  data() {
+    return {
+
+    }
+  },
+  components: {
+    Scroll
+  }
 }
+
 </script>
 
-<style>
+<style scoped>
 
 </style>
