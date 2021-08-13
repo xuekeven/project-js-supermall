@@ -16,7 +16,6 @@ export default {
     Scroll
   }
 }
-
 </script>
 
 <style scoped>

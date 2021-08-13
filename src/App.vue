@@ -3,12 +3,11 @@
     <keep-alive exclude="Detail">
       <router-view/>
     </keep-alive>
-    <main-tab-bar/>
+    <MainTabBar/>
   </div>
 </template>
 
 <script>
-
 import MainTabBar from 'components/content/mainTabbar/MainTabBar';
 
 export default {
@@ -17,11 +16,8 @@ export default {
     MainTabBar
   }
 }
-
 </script>
 
-<style>
-
-  @import "~@/assets/css/base.css";
-  
+<style scoped>
+@import "~@/assets/css/base.css";
 </style>

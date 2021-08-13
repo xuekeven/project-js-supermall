@@ -9,7 +9,6 @@
 </template>
 
 <script>
-
 import BScroll from 'better-scroll'
 
 export default {
@@ -63,14 +62,14 @@ export default {
     scrollTo(x, y, time=300) {
       this.scroll && this.scroll.scrollTo(x, y, time)
     },
-    // 完成上拉
-    finishPullUp() {
-      this.scroll && this.scroll.finishPullUp()
-    },
     // 刷新
     refresh() {
       // console.log("------")
       this.scroll && this.scroll.refresh()
+    },
+    // 完成上拉
+    finishPullUp() {
+      this.scroll && this.scroll.finishPullUp()
     },
     // 获取离开时位置以便复原
     getScrollY() {
@@ -78,7 +77,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>

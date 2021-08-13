@@ -12,7 +12,7 @@ export function formatDate(date, fmt) {
   //1.获取年份
   if(/(y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + ' ').substr(4 - RegExp.$1.length));
-    console.log(fmt);
+    // console.log(fmt);
   }
   let o = {
     "M+" : date.getMonth() + 1,
@@ -29,7 +29,6 @@ export function formatDate(date, fmt) {
   }
   return fmt;
 }
-
 function padLeftZero(str) {
   return ('00' + str).substr(str.length)
 }

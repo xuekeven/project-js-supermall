@@ -1,91 +1,94 @@
 <template>
-   <div v-if="Object.keys(goods).length !== 0" class="base-info">
-     <h4 class="info-title">{{goods.title}}</h4>
-     <ul class="info-price">
-       <li class="n-price">{{goods.newPrice}}</li>
-       <li class="o-price">{{goods.oldPrice}}</li>
-       <li v-if="goods.discount" class="discount"><span>{{goods.discount}}</span></li>
-     </ul>
-     <ul class="info-other">
-       <li>{{goods.columns[0]}}</li>
-       <li>{{goods.columns[1]}}</li>
-       <li>{{goods.services[goods.services.length - 1].name}}</li>
-     </ul>
-     <hr/>
-     <div class="info-service">
-       <span class="info-service-item" v-for="index in goods.services.length-1" :key="index">
-         <img :src="goods.services[index-1].icon" :key='index' alt="">
-         <span>{{goods.services[index-1].name}}</span>
-       </span>
-     </div>
-   </div>
+  <div v-if="Object.keys(goods).length !== 0" class="base-info">
+    <div class="info-title">{{goods.title}}</div>
+    <div class="info-price">
+      <span class="n-price">{{goods.newPrice}}</span>
+      <span class="o-price">{{goods.oldPrice}}</span>
+      <span v-if="goods.discount" class="discount">{{goods.discount}}</span>
+    </div>
+    <div class="info-other">
+      <span>{{goods.columns[0]}}</span>
+      <span>{{goods.columns[1]}}</span>
+      <span>{{goods.services[goods.services.length-1].name}}</span>
+    </div>
+    <div class="info-service">
+      <span class="info-service-item" v-for="index in goods.services.length-1" :key="index">
+        <img :src="goods.services[index-1].icon">
+        <span>{{goods.services[index-1].name}}</span>
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>
-
 export default {
   name: "DetailBaseInfo",
   props: {
-    goods:{
+    goods: {
       type: Object,
-      default(){
+      default() {
         return {}
       }
     }
   }
 }
-
 </script>
 
-<style>
-.base-info{
-  padding: 0px 2%;
+<style scoped>
+.base-info {
+  margin-top: 15px;
+  padding: 0 8px;
+  color: #999;
+  border-bottom: 5px solid #f2f5f8;
 }
-.info-title{
-  padding: 2% 0;
-  color: #000;
-  font-weight: 600;
-  font-size: 16px;
+.info-title {
+  color: #222
 }
-.info-price{
-  display: flex;
+.info-price {
+  margin-top: 10px;
 }
-.info-price li{
-  margin: 5px 3px;
+.info-price .n-price {
+  font-size: 24px;
+  color: var(--color-high-text);
 }
-.n-price{
-  color: red;
-  font-size: 26px;
-}
-.o-price{
+.info-price .o-price {
+  font-size: 13px;
+  margin-left: 5px;
   text-decoration: line-through;
-  align-self: flex-end;
 }
-.discount span{
+.info-price .discount {
   font-size: 12px;
-  padding: 3px 5px;
-  background-color: red;
+  padding: 2px 5px;
   color: #fff;
-  border-radius: 10px;
+  background-color: var(--color-high-text);
+  border-radius: 8px;
+  margin-left: 5px;
+
+  /*让元素上浮一些: 使用相对定位即可*/
+  position: relative;
+  top: -8px;
 }
-.info-other,.info-service{
+.info-other {
+  margin-top: 15px;
+  line-height: 30px;
+  display: flex;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(100,100,100,.1);
+  justify-content: space-between;
+}
+.info-service {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  line-height: 60px;
 }
-.info-other{
-  margin: 20px 0 5px 0;
-}
-.info-service{
-  margin: 5px 0 20px 0;
-}
-.info-service img{
+.info-service-item img {
   width: 14px;
-  margin-right:3px;
+  height: 14px;
+  position: relative;
+  top: 2px;
 }
-hr{
-  background-color: #f0f0f0;
-  height: 1px;
-  border:none;
+.info-service-item span {
+  font-size: 13px;
+  color: #333;
 }
 </style>

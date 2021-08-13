@@ -9,7 +9,6 @@
 </template>
 
 <script>
-
 import {Swiper, SwiperItem} from 'components/common/swiper'
 
 export default {
@@ -30,9 +29,7 @@ export default {
 </script>
 
 <style scoped>
-
 .deail-swiper{
   height: 300px;
 }
-
 </style>
