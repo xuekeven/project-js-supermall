@@ -1,7 +1,7 @@
 <template>
   <!-- 绑定ref可以准确拿取元素 -->
   <div class="wrapper" ref="wrapper">
-    <!-- Better-Scroll使用时只能用于一个元素，所有还需要再包装一个元素 -->
+    <!-- Better-Scroll使用时只能用于一个元素，所以还需要再包装一下 -->
     <div class="content">
       <slot></slot>
     </div>
@@ -40,7 +40,6 @@ export default {
       probeType: this.probeType,
       pullUpLoad: this.pullUpLoad
     })
-
     // 2.监听滚动的位置
     if (this.probeType === 2 || this.probeType === 3) {
       this.scroll.on('scroll', (position) => {
@@ -49,7 +48,6 @@ export default {
         // console.log(this.scroll)
       })
     }
-
     // 3.监听上拉加载更多事件
     if (this.pullUpLoad) {
       this.scroll.on('pullingUp', () => {

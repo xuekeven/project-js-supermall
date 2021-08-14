@@ -1,15 +1,14 @@
 <template>
-  <swiper class="deail-swiper">
-    <swiper-item v-for="(item,index) in topImages" :key="index">
-      <a :href="item">
-        <img :src="item" alt="">
-      </a>
-    </swiper-item>
-  </swiper>
+  <Swiper class="deail-swiper">
+    <SwiperItem v-for="(item, index) in topImages" :key="index">
+      <a :href="item"><img :src="item" alt=""></a>
+    </SwiperItem>
+  </Swiper>
 </template>
 
 <script>
-import {Swiper, SwiperItem} from 'components/common/swiper'
+import Swiper from 'components/common/swiper/Swiper'
+import SwiperItem from 'components/common/swiper/SwiperItem'
 
 export default {
   name: "DetailSwiper",

@@ -33,19 +33,17 @@ export default {
 </script>
 
 <style>
-
 .tab-bar-item {
   flex: 1;
   text-align: center;
   height: 49px;
   font-size: 14px;
 }
-
 .tab-bar-item img {
   height: 24px;
   width: 24px;
   margin-top: 3px;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   vertical-align: middle;
 }
 </style>

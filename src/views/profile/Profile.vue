@@ -9,7 +9,6 @@ import Scroll from 'components/common/scroll/Scroll';
 export default {
   data() {
     return {
-
     }
   },
   components: {

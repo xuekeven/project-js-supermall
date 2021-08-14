@@ -69,10 +69,10 @@ export default {
 
 <style scoped>
 .bottom-bar {
-  height: 40px;
+  height: 8vh;
   background-color: #eee;
   position: relative;
-  line-height: 40px;
+  line-height: 8vh;
   display: flex;
 }
 .check-content {

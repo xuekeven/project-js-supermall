@@ -5,7 +5,7 @@ import store from './store/index'
 import toast from 'components/common/toast/index'
 
 import FastClick from 'fastclick'
-import LazyLoad from 'vue-lazyload'
+// import LazyLoad from 'vue-lazyload'
 
 Vue.config.productionTip = false
 
@@ -16,7 +16,7 @@ Vue.use(toast)
 // 减少移动端300ms延迟
 FastClick.attach(document.body)
 // 图片懒加载
-Vue.use(LazyLoad)
+// Vue.use(LazyLoad)
 
 new Vue({
   render: h => h(App),

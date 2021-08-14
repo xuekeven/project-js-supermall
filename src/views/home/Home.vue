@@ -7,8 +7,8 @@
                 ref="tabControl1" class="tab-control" v-show="isTabFixed"/>
     <!-- 绑定ref可以准确拿取组件 -->
     <Scroll class="content" ref="scroll" :probe-type="3" :pull-up-load="true"
-            @scroll="contentScroll" @pullingUp="loadMore()">
-      <HomeSwiper :banners='banners' @swiperImageLoad="swiperImageLoad()"/>
+            @scroll="contentScroll" @pullingUp="loadMore">
+      <HomeSwiper :banners='banners' @swiperImageLoad="swiperImageLoad"/>
       <RecommendView :recommends='recommends'/>
       <FeatureView/>
       <TabControl :titles="['流行', '新款', '精选']" @tabClick='tabClick' ref="tabControl2"/>
@@ -65,7 +65,7 @@ export default {
   destroyed() {
     console.log('Home destroyed')
   },
-  // 组件活跃生命函数
+  // 进入活跃
   activated() {
     this.$refs.scroll.scrollTo(0, this.saveY, 0)
     this.$refs.scroll.refresh()
@@ -123,7 +123,7 @@ export default {
     contentScroll(position) {
       // 判断BackTop是否显示
       // this.isShowBackTop = (-position.y) > 1000
-      //  决定tabControl是否吸顶
+      // 决定tabControl是否吸顶
       this.isTabFixed = (-position.y) > this.tabOffsetTop
       this.listenShowBackTop(position)
     },
@@ -165,7 +165,6 @@ export default {
 .home-nav {
   background-color: var(--color-tint);
   color: #fff;
-
   /* 在使用浏览器原生滚动时，为了让导航不随滚动，需要固定定位，脱离正常文档流。
   需设置z-inde，否则被轮播图覆盖，又需#home设置padding-top，否则影响轮播图显示 */
   /* position: fixed;

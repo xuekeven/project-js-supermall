@@ -10,9 +10,9 @@
 
 <script>
 import NavBar from 'components/common/navbar/NavBar.vue'
-import { mapGetters } from 'vuex';
 import CartList from './childComps/CartList.vue'
 import CartBottomBar from './childComps/CartBottomBar.vue'
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Cart',
@@ -22,12 +22,12 @@ export default {
     CartBottomBar,
   },
   computed: {
-    // 用法1：
+    // 用法1：使用原标识符
     // ...mapGetters(['cartLength','cartList'])
-    // 用法2：
+    // 用法2：自定义标识符来使用
     ...mapGetters({
-      length:'cartLength',
-      list:'cartList'
+      length: 'cartLength',
+      list: 'cartList'
     })
   }
 }
