@@ -22,40 +22,35 @@
 </template>
 
 <script>
-	export default {
-		name: "AccountInfo"
-	}
+export default {
+  name: "AccountInfo"
+}
 </script>
 
 <style scoped>
-  .account {
-    display: flex;
-  }
-
-  .account-item {
-    width: 100%;
-    background-color: #fff;
-    margin-right: 1px;
-    text-align: center;
-  }
-
-  .account-item:last-of-type {
-    margin-right: 0;
-  }
-
-  .account-item {
-    color: #666;
-    font-size: 13px;
-    padding: 18px;
-  }
-
-  .account-item .balance {
-    font-size: 24px;
-    font-weight: 700;
-    color: #ff5f3e;
-  }
-
-  .account-info {
-    margin-top: 6px;
-  }
+.account {
+  display: flex;
+}
+.account-item {
+  width: 100%;
+  background-color: #fff;
+  margin-right: 1px;
+  text-align: center;
+}
+.account-item:last-of-type {
+  margin-right: 0;
+}
+.account-item {
+  color: #666;
+  font-size: 13px;
+  padding: 18px;
+}
+.account-item .balance {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff5f3e;
+}
+.account-info {
+  margin-top: 6px;
+}
 </style>

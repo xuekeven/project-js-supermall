@@ -1,21 +1,21 @@
 <template>
-    <div>
-      <div class="icon-selector" :class="{'selector-active': isChecked}">
-        <img src="~/assets/img/cart/tick.svg" alt="">
-      </div>
+  <div>
+    <div class="icon-selector" :class="{'selector-active': isChecked}">
+      <img src="~/assets/img/cart/tick.svg" alt="">
     </div>
+  </div>
 </template>
 
 <script>
-	export default {
-		name: "CheckButton",
-    props: {
-		  isChecked: {
-        type: Boolean,
-        default: false
-      }
-    },
-	}
+export default {
+  name: "CheckButton",
+  props: {
+    isChecked: {
+      type: Boolean,
+      default: false
+    }
+  },
+}
 </script>
 
 <style scoped>
