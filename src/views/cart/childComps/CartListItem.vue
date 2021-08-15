@@ -12,7 +12,11 @@
       <div class="item-desc">{{itemInfo.desc}}</div>
       <div class="info-bottom">
         <div class="item-price left">￥{{itemInfo.price}}</div>
-        <div class="item-count right">x{{itemInfo.count}}</div>
+        <div class="item-count right">
+          <button class="countButton" @click="dec()" :disabled="itemInfo.count <= 1"><p>-</p></button>
+          x{{itemInfo.count}}
+          <button class="countButton" @click="add()"><p>+</p></button>
+        </div>
       </div>
     </div>
   </div>
@@ -37,6 +41,12 @@ export default {
   methods: {
     checkClick() {
       this.itemInfo.checked = !this.itemInfo.checked;
+    },
+    dec() {
+      this.itemInfo.count--
+    },
+    add() {
+      this.itemInfo.count++
     }
   }
 }
@@ -86,11 +96,17 @@ export default {
 .info-bottom {
   margin-top: 10px;
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
+  bottom: 8px;
+  left: 5px;
+  right: 5px;
 }
 .info-bottom .item-price {
   color: orangered;
+}
+.countButton p {
+  height: 3vh;
+  width: 3vw;
+  text-align:center;
+  line-height: 3vh;
 }
 </style>
