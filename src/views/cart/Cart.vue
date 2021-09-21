@@ -24,11 +24,10 @@ export default {
   },
   computed: {
     // 用法1：使用原标识符
-    // ...mapGetters(['cartLength','cartList'])
+    // ...mapGetters(['cartLength'])
     // 用法2：自定义标识符来使用
     ...mapGetters({
-      length: 'cartLength',
-      list: 'cartList'
+      length: 'cartLength'
     })
   }
 }

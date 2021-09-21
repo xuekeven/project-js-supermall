@@ -1,4 +1,4 @@
-const actions = {
+export default {
 	addCart(context, payload) {
     return new Promise((resolve, reject) => {
       let oldProduct = context.state.cartList.find(item => item.iid === payload.iid)
@@ -16,5 +16,3 @@ const actions = {
     })
 	}
 }
-
-export default actions

@@ -13,9 +13,9 @@
       <div class="info-bottom">
         <div class="item-price left">￥{{itemInfo.price}}</div>
         <div class="item-count right">
-          <button class="countButton" @click="dec()" :disabled="itemInfo.count <= 1"><p>-</p></button>
+          <button class="countButton" @click="dec(itemInfo)" :disabled="itemInfo.count <= 1">-</button>
           x{{itemInfo.count}}
-          <button class="countButton" @click="add()"><p>+</p></button>
+          <button class="countButton" @click="add(itemInfo)">+</button>
         </div>
       </div>
     </div>
@@ -24,9 +24,10 @@
 
 <script>
 import CheckButton from 'components/content/checkButton/CheckButton'
+import { mapMutations } from 'vuex'
 
 export default {
-  name: "ShopCartItem",
+  name: "CartListItem",
   props: {
     itemInfo: {
       type: Object,
@@ -39,14 +40,19 @@ export default {
     CheckButton
   },
   methods: {
+    // 使用vuex的映射
+    ...mapMutations(['addCounter','decCounter']),
     checkClick() {
       this.itemInfo.checked = !this.itemInfo.checked;
     },
-    dec() {
-      this.itemInfo.count--
+    dec(itemInfo) {
+      // 使用vuex的映射，this.decCounter(itemInfo)相当于this.$store.commit('decCounter', itemInfo)
+      this.$store.commit('decCounter', itemInfo)
+      this.decCounter(itemInfo)
     },
-    add() {
-      this.itemInfo.count++
+    add(itemInfo) {
+      // 使用vuex的映射，this.addCounter(itemInfo)相当于this.$store.commit('addCounter', itemInfo)
+      this.addCounter(itemInfo)
     }
   }
 }
@@ -99,14 +105,13 @@ export default {
   bottom: 8px;
   left: 5px;
   right: 5px;
+  height: 3vh;
 }
 .info-bottom .item-price {
   color: orangered;
 }
-.countButton p {
-  height: 3vh;
+.info-bottom .countButton {
   width: 3vw;
   text-align:center;
-  line-height: 3vh;
 }
 </style>

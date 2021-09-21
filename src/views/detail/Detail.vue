@@ -92,7 +92,6 @@ export default {
     getRecommend().then(res => {
       this.recommends = res.data.list
     })
-
     this.getThemeTopY = debounce( () => {
       this.themeTopYs = []
       this.themeTopYs.push(0)
@@ -135,7 +134,7 @@ export default {
       this.listenShowBackTop(position)
     },
     addToCart(){
-      console.log("添加到购物车");
+      // console.log("添加到购物车");
       // 获取商品在购物车需要展示的信息
       const product = {}
       product.image = this.topImages[0]
@@ -143,7 +142,7 @@ export default {
       product.title = this.goods.title
       product.desc = this.goods.desc
       product.price = this.goods.realPrice
-      console.log(product);
+      // console.log(product);
       // 将商品添加到购物车
       // this.$store.commit("addCart",product)
       // this.$store.dispatch("addCart",product).then(res => {

@@ -1,4 +1,4 @@
-const getters = {
+export default {
 	cartLength(state) {
 		return state.cartList.length
 	},
@@ -6,5 +6,3 @@ const getters = {
 		return state.cartList
 	}
 }
-
-export default getters

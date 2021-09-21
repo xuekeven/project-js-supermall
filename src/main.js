@@ -21,5 +21,9 @@ FastClick.attach(document.body)
 new Vue({
   render: h => h(App),
   router,
-  store
+  store,
+  mounted() {
+    // 使用 sessionStorage 保存数据
+    if (sessionStorage.sessionCartList) this.$store.commit('getSessionStorage')
+  }
 }).$mount('#app')
