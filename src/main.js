@@ -9,14 +9,13 @@ import FastClick from 'fastclick'
 
 Vue.config.productionTip = false
 
-//  添加事件总线
-Vue.prototype.$bus = new Vue()
-// 安装 toast 插件
-Vue.use(toast)
-// 减少移动端300ms延迟
-FastClick.attach(document.body)
-// 图片懒加载
-// Vue.use(LazyLoad)
+Vue.prototype.$bus = new Vue() //  添加事件总线
+
+Vue.use(toast) // 安装 toast 插件
+
+FastClick.attach(document.body) // 减少移动端300ms延迟
+
+// Vue.use(LazyLoad) // 图片懒加载
 
 new Vue({
   render: h => h(App),

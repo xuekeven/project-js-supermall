@@ -65,19 +65,19 @@ export default {
   destroyed() {
     console.log('Home destroyed')
   },
-  // 进入活跃
+  // 组件激活
   activated() {
     this.$refs.scroll.scrollTo(0, this.saveY, 0)
     this.$refs.scroll.refresh()
   },
-  // 离开组件
+  // 组件失活
   deactivated() {
     // 1.保存Y值
     this.saveY = this.$refs.scroll.getScrollY()
     // 2.取消全局事件的监听
     this.$bus.$off('itemImgLoad', this.itemImgListener)
   },
-  // 组件创建完成
+  // 实例创建完成
   created() {
     //获取数据
     this.getHomeMultidata();
@@ -86,7 +86,7 @@ export default {
     this.getHomeGoods('new');
     this.getHomeGoods('sell');
   },
-  // 组件加载完成
+  // 实例挂载完成
   mounted() {
   },
   methods: {
