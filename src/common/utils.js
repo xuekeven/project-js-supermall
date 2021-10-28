@@ -9,7 +9,7 @@ export function debounce(func, delay=100) {
 }
 
 export function formatDate(date, fmt) {
-  //1.获取年份
+  // 1.获取年份
   if(/(y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + ' ').substr(4 - RegExp.$1.length));
     // console.log(fmt);

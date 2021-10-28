@@ -1,8 +1,6 @@
 <template>
 	<div id="cart">
-		<NavBar class="cart-nav">
-			<template #center>购物车({{length}})</template>
-		</NavBar>
+		<NavBar class="cart-nav"><template #center>购物车({{length}})</template></NavBar>
 		<CartList v-if="length > 0"/>
     <div id="else" v-else><span>还没有选购商品哦，快去看看吧~</span></div>
 		<CartBottomBar/>

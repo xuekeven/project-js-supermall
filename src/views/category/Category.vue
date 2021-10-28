@@ -17,7 +17,6 @@ import CategoryContent from './childComps/CategoryContent'
 
 import { getCategory, getSubcategory, getCategoryDetail } from 'network/category';
 
-
 export default {
   components: {
     NavBar,

@@ -85,7 +85,7 @@ export default {
       if(data.rate.cRate !== 0) {
         this.commentInfo = data.rate.list[0]
       }
-    },err => {
+    }, err => {
       console.log(err);
     })
     //请求详情页面推荐数据
@@ -158,18 +158,18 @@ export default {
 </script>
 
 <style scoped>
-#detail{
+#detail {
   position: relative;
   z-index: 9;
   background-color: #fff;
   height: 100vh;
 }
-.detail-nav{
+.detail-nav {
   position: relative;
   z-index: 9;
   background-color: #fff;
 }
-.content{
+.content {
   height: calc(100% - 44px - 58px);
   overflow: hidden;
 }

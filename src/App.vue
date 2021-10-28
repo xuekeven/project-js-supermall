@@ -14,6 +14,11 @@ export default {
   name: 'App',
   components: {
     MainTabBar
+  },
+  created() {
+    if (sessionStorage.sessionCartList) {
+      this.$store.commit('getSessionStorage')
+    }
   }
 }
 </script>

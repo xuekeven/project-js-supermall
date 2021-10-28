@@ -85,6 +85,7 @@ export default {
     this.getHomeGoods('pop');
     this.getHomeGoods('new');
     this.getHomeGoods('sell');
+    // 使用 sessionStorage 保存数据
   },
   // 实例挂载完成
   mounted() {
