@@ -1,6 +1,8 @@
 <template>
   <div id="profile">
-    <NavBar class="nav-bar"><div slot="center">我的档案</div></NavBar>
+    <NavBar class="nav-bar">
+      <template #center>我的档案</template>
+    </NavBar>
     <UserInfo/>
     <AccountInfo/>
     <NormalListView :list-data="orderList"/>

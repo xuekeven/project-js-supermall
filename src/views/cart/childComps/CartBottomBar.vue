@@ -1,16 +1,11 @@
 <template>
   <div class="bottom-bar">
     <div class="check-content">
-      <CheckButton class="check-botton" 
-                  :isChecked="isSeclectAll"
-                  @click.native="checkClick()"/><span>全选</span>
+      <CheckButton class="check-botton" :isChecked="isSeclectAll"
+                  @click.native="checkClick"/><span>全选</span>
     </div>
-    <div class="total-price">
-      合计: {{totalPrice}}
-    </div>
-    <div class="calculate" @click="calcClick()">
-      去计算({{checkLength}})
-    </div>
+    <div class="total-price">合计: {{totalPrice}}</div>
+    <div class="calculate" @click="clickNext">{{word}}({{cartCheckLength}})</div>
   </div>
 </template>
 
@@ -20,48 +15,33 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: "BottomBar",
+  props: ['word'],
   components: {
     CheckButton
   },
   computed: {
-    ...mapGetters(['cartList','cartLength']),
+    ...mapGetters(['cartList', 'cartLength', 'cartCheckLength']),
     totalPrice() {
       return '￥' + this.cartList.filter(item => {
 				return item.checked
       }).reduce((preValue, item) => {
         return preValue+ item.price * item.count
-      },0).toFixed(2)
+      }, 0).toFixed(2)
     },
-    checkLength() {
-			return this.cartList.filter(item => item.checked).length ;
-		},
     isSeclectAll() {
       if (this.cartList.length === 0) return false
-      // 1.
-      // return !(this.cartList.filter(item => !item.checked).length)
-      // 2.
-      // return !this.cartList.find(item => !item.checked)
-      // 3.
-      for (let item of this.cartList) {
-        if (!item.checked) {
-          return false
-        }
-      }
+      for (let item of this.cartList) if (!item.checked) return false
       return true
     }
   },
   methods: {
     checkClick() {
-      if (this.isSeclectAll) {
-        this.cartList.forEach(item => item.checked = false)
-      } else {
-        this.cartList.forEach(item => item.checked = true)
-      }
+      if (this.isSeclectAll) this.cartList.forEach(item => item.checked = false)
+      else this.cartList.forEach(item => item.checked = true)
     },
-    calcClick() {
-      if(this.cartList.length === 0) {
-        this.$toast.show('还没有选购商品哦')
-      }
+    clickNext() {
+      if (this.cartCheckLength === 0) this.$toast.show('还没有选择商品哦')
+      else if (this.word === "删除") this.$emit('del')
     }
   }
 }
@@ -69,10 +49,10 @@ export default {
 
 <style scoped>
 .bottom-bar {
-  height: 8vh;
+  height: 50px;
   background-color: #eee;
   position: relative;
-  line-height: 8vh;
+  line-height: 50px;
   display: flex;
 }
 .check-content {

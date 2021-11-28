@@ -1,9 +1,7 @@
 <template>
   <NavBar>
     <template #left>
-      <div class="back" @click="backClick">
-        <img src="~assets/img/common/back.svg" alt="">
-      </div>
+      <div class="back" @click="backClick()"><img src="~assets/img/common/back.svg" alt=""></div>
     </template>
     <template #center>
       <div class="title">
@@ -43,6 +41,13 @@ export default {
 </script>
 
 <style scoped>
+.back{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
 .title {
   display: flex;
   align-items: center;
@@ -53,11 +58,5 @@ export default {
 }
 .active {
   color: var(--color-high-text);
-}
-.back{
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>

@@ -47,7 +47,6 @@ export default {
     // 1.操作DOM, 在前后添加Slide
     setTimeout(() => {
       this.handleDom();
-
       // 2.开启定时器
       this.startTimer();
     }, 3000)
@@ -98,7 +97,6 @@ export default {
           this.currentIndex = this.slideCount;
           this.setTransform(-this.currentIndex * this.totalWidth);
         }
-
         // 2.结束移动后的回调
         this.$emit('transitionEnd', this.currentIndex-1);
       }, this.animDuration)

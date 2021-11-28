@@ -12,6 +12,7 @@
 
 <script>
 import NavBar from 'components/common/navbar/NavBar.vue';
+
 import CategoryMenu from './childComps/CategoryMenu'
 import CategoryContent from './childComps/CategoryContent'
 

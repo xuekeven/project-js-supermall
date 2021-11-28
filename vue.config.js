@@ -1,6 +1,6 @@
 const path = require('path');
 
-function resolve (dir) { 
+function resolve(dir) { 
   return path.join(__dirname, dir) 
 }
 
@@ -14,5 +14,7 @@ module.exports = {
       .set('components',resolve('src/components')) 
       .set('network',resolve('src/network'))
       .set('views',resolve('src/views'))
+  },
+  pluginOptions: {
   }
 }

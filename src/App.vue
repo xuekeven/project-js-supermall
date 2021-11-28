@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import MainTabBar from 'components/content/mainTabbar/MainTabBar';
+import MainTabBar from 'components/content/mainTabbar/MainTabBar'
 
 export default {
   name: 'App',
@@ -25,4 +25,5 @@ export default {
 
 <style scoped>
 @import "~@/assets/css/base.css";
+@import "~@/assets/css/buttons.css";
 </style>

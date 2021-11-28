@@ -1,10 +1,12 @@
 <template>
   <div id="home">
-    <NavBar class="home-nav">
-      <template v-slot:center><div>购物街</div></template>
+    <NavBar class="homeNav">
+      <template v-slot:left><div class="left">购物街</div></template>
+      <template v-slot:center><Search ref="search" @searchThink="searchThink"/></template>
+      <template v-slot:right><span class="bttn bttn-jelly bttn-md bttn-warning">搜索</span></template>
     </NavBar>
     <TabControl :titles="['流行', '新款', '精选']" @tabClick='tabClick'
-                ref="tabControl1" class="tab-control" v-show="isTabFixed"/>
+                ref="tabControl1" class="tabControl" v-show="isTabFixed"/>
     <!-- 绑定ref可以准确拿取组件 -->
     <Scroll class="content" ref="scroll" :probe-type="3" :pull-up-load="true"
             @scroll="contentScroll" @pullingUp="loadMore">
@@ -16,36 +18,40 @@
     </Scroll>
     <!-- 可以监听元素，也可以监听组件 -->
     <BackTop @click.native="backTop()" v-show="isShowBackTop"/>
+    <Searching class="searching content" v-show="isSearching"
+              :searchingCompare="searchingCompare" @searchChoice="searchChoice"/>
   </div>
 </template>
 
 <script>
-import HomeSwiper from './childComps/HomeSwiper';
-import RecommendView from './childComps/RecommendView';
-import FeatureView from './childComps/FeatureView';
-
 import NavBar from 'components/common/navbar/NavBar';
+import Search from 'components/common/search/Search';
+import Searching from 'components/common/search/Searching';
 import TabControl from 'components/content/tabControl/TabControl';
 import GoodsList from 'components/content/goods/GoodsList';
 import Scroll from 'components/common/scroll/Scroll';
-// import BackTop from 'components/content/backTop/BackTop';
+
+import HomeSwiper from './childComps/HomeSwiper';
+import RecommendView from './childComps/RecommendView';
+import FeatureView from './childComps/FeatureView';
 
 import { getHomeMultidata, getHomeGoods } from 'network/home';
 import { itemListenerMixin, backTopMixin } from 'common/mixin';
 
 export default {
   name: 'Home',
+  mixins:[itemListenerMixin, backTopMixin],
   components: { 
     HomeSwiper,
     RecommendView,
     FeatureView,
     NavBar,
+    Search,
+    Searching,
     TabControl,
     GoodsList,
     Scroll,
-    // BackTop
   },
-  mixins:[itemListenerMixin, backTopMixin],
   data() {
     return {
       banners: [],
@@ -56,26 +62,28 @@ export default {
         'sell': {page: 0,list:[]}
       },
       currentType: 'pop',
-      // isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false,
       saveY: 0,
+      isSearching: false,
+      searching: ['男鞋', '女鞋', '马丁靴', '秋裤', '羽绒', '羽绒服'],
+      searchingCompare: null
     }
   },
   destroyed() {
-    console.log('Home destroyed')
+    console.log('Home destroyed');
   },
   // 组件激活
   activated() {
-    this.$refs.scroll.scrollTo(0, this.saveY, 0)
-    this.$refs.scroll.refresh()
+    this.$refs.scroll.scrollTo(0, this.saveY, 0);
+    this.$refs.scroll.refresh();
   },
   // 组件失活
   deactivated() {
     // 1.保存Y值
-    this.saveY = this.$refs.scroll.getScrollY()
+    this.saveY = this.$refs.scroll.getScrollY();
     // 2.取消全局事件的监听
-    this.$bus.$off('itemImgLoad', this.itemImgListener)
+    this.$bus.$off('itemImgLoad', this.itemImgListener);
   },
   // 实例创建完成
   created() {
@@ -85,22 +93,8 @@ export default {
     this.getHomeGoods('pop');
     this.getHomeGoods('new');
     this.getHomeGoods('sell');
-    // 使用 sessionStorage 保存数据
-  },
-  // 实例挂载完成
-  mounted() {
   },
   methods: {
-    // 事件监听相关
-    // debounce(func, delay) {
-    //   let timer = null
-    //   return function(...args) {
-    //     if(timer) clearTimeout(timer)
-    //     timer = setTimeout( () => {
-    //       func.apply(this, args)
-    //     }, delay)
-    //   }
-    // },
     tabClick(index) {
       switch(index) {
         case 0:
@@ -113,8 +107,8 @@ export default {
           this.currentType = 'sell';
           break;
       }
-      this.$refs.tabControl1.currentIndex = index
-      this.$refs.tabControl2.currentIndex = index
+      this.$refs.tabControl1.currentIndex = index;
+      this.$refs.tabControl2.currentIndex = index;
     },
     // 回顶部
     // backClick() {
@@ -125,8 +119,8 @@ export default {
       // 判断BackTop是否显示
       // this.isShowBackTop = (-position.y) > 1000
       // 决定tabControl是否吸顶
-      this.isTabFixed = (-position.y) > this.tabOffsetTop
-      this.listenShowBackTop(position)
+      this.isTabFixed = (-position.y) > this.tabOffsetTop;
+      this.listenShowBackTop(position);
     },
     // 上拉加载更多
     loadMore() {
@@ -134,8 +128,8 @@ export default {
       // this.$refs.scroll.scroll.refresh();
     },
     //获取tab-control的offsetTop
-    swiperImageLoad(){
-        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
+    swiperImageLoad() {
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
         // console.log(this.$refs.tabControl2.$el.offsetTop)
       },
     // 网络获取数据相关
@@ -150,8 +144,24 @@ export default {
       getHomeGoods(type, page).then(res => {
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1;
-        this.$refs.scroll.finishPullUp()
+        this.$refs.scroll.finishPullUp();
       })
+    },
+    searchThink(message) {
+      this.searchingCompare = [];
+      if (message === '') {
+        this.isSearching = false;
+      } else {
+        this.isSearching = true;
+        this.searching.forEach(elem => {
+          if (elem.indexOf(message) > -1 && this.searchingCompare.indexOf(elem) === -1) {
+            this.searchingCompare.push(elem);
+          }
+        });
+      }
+    },
+    searchChoice(mess) {
+      this.$refs.search.message = mess;
     }
   }
 }
@@ -163,7 +173,7 @@ export default {
   height: 100vh;
   position: relative;
 }
-.home-nav {
+.homeNav {
   background-color: var(--color-tint);
   color: #fff;
   /* 在使用浏览器原生滚动时，为了让导航不随滚动，需要固定定位，脱离正常文档流。
@@ -173,6 +183,13 @@ export default {
   left: 0;
   right: 0;
   z-index: 1; */
+}
+.left {
+  margin-left: 10px;
+}
+.bttn {
+  height: 30px;
+  width: 80px;
 }
 /* .tab-control {
   position: sticky;
@@ -188,7 +205,7 @@ export default {
   left: 0;
   right: 0;
 }
-.tab-control {
+.tabControl {
   position: relative;
   z-index: 9;
 }
@@ -198,4 +215,7 @@ export default {
   right: 0;
   top: 44px;
 } */
+.searching {
+  z-index: 10;
+}
 </style>

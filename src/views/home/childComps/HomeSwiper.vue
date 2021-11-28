@@ -1,9 +1,7 @@
 <template>
   <Swiper>
     <SwiperItem v-for="(item, id) in banners" :key="id" >
-      <a :href="item.link">
-        <img :src="item.image" alt="" @load="imageLoad()" >
-      </a>
+      <a :href="item.link"><img :src="item.image" alt="" @load="imageLoad()" ></a>
     </SwiperItem >
   </Swiper>
 </template>

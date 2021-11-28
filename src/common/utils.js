@@ -1,13 +1,17 @@
-export function debounce(func, delay=100) {
-  let timer = null
-  return function(...args) {
-    if(timer) clearTimeout(timer)
-    timer = setTimeout( () => {
-      func.apply(this, args)
-    }, delay)
+// utils：“实用程序”
+
+// 防抖函数
+export function debounce(fun, wait=100) {
+  let context = this, args = arguments, timeout;
+  return function() {
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      fun.apply(context, args)
+    }, wait)
   }
 }
 
+// 日期换算
 export function formatDate(date, fmt) {
   // 1.获取年份
   if(/(y+)/.test(fmt)) {

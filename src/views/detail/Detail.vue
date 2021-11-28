@@ -18,8 +18,8 @@
 
 <script>
 import Scroll from 'components/common/scroll/Scroll'
-// import Toast from 'components/common/toast/Toast'
 import GoodsList from 'components/content/goods/GoodsList'
+
 import DetailNavBar from './childComps/DetailNavBar'
 import DetailSwiper from './childComps/DetailSwiper'
 import DetailBaseInfo from './childComps/DetailBaseInfo'
@@ -28,6 +28,7 @@ import DetailGoodsInfo from './childComps/DetailGoodsInfo'
 import DetailParamInfo from './childComps/DetailParamInfo'
 import DetailCommentInfo from './childComps/DetailCommentInfo'
 import DetailBottomBar from './childComps/DetailBottomBar'
+
 import { getDatail, Goods, Shop, GoodsParam, getRecommend } from 'network/detail'
 import { itemListenerMixin, backTopMixin } from "common/mixin"
 import { debounce } from 'common/utils'

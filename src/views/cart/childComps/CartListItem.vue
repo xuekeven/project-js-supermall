@@ -1,8 +1,7 @@
 <template>
   <div id="shop-item">
     <div class="item-selector">
-      <CheckButton :isChecked='itemInfo.checked' 
-                  @click.native="checkClick" />
+      <CheckButton :isChecked="itemInfo.checked" @click.native="checkClick" />
     </div>
     <div class="item-img">
       <img :src="itemInfo.image" alt="商品图片">
@@ -10,12 +9,12 @@
     <div class="item-info">
       <div class="item-title">{{itemInfo.title}}</div>
       <div class="item-desc">{{itemInfo.desc}}</div>
-      <div class="info-bottom">
-        <div class="item-price left">￥{{itemInfo.price}}</div>
-        <div class="item-count right">
-          <button class="countButton" @click="dec(itemInfo)" :disabled="itemInfo.count <= 1">-</button>
-          x{{itemInfo.count}}
-          <button class="countButton" @click="add(itemInfo)">+</button>
+      <div class="item-bottom">
+        <div class="item-price">￥{{itemInfo.price}}</div>
+        <div class="item-count">
+          <button class="countButt" @click="dec(itemInfo)" :disabled="itemInfo.count <= 1">-</button>
+          X{{itemInfo.count}}
+          <button class="countButt" @click="add(itemInfo)">+</button>
         </div>
       </div>
     </div>
@@ -47,7 +46,6 @@ export default {
     },
     dec(itemInfo) {
       // 使用vuex的映射，this.decCounter(itemInfo)相当于this.$store.commit('decCounter', itemInfo)
-      this.$store.commit('decCounter', itemInfo)
       this.decCounter(itemInfo)
     },
     add(itemInfo) {
@@ -72,46 +70,47 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.item-title, .item-desc {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 .item-img {
   padding: 5px;
-  /*border: 1px solid #ccc;*/
 }
-.item-img img {
-  width: 80px;
+img {
+  width: 75px;
   height: 100px;
   display: block;
   border-radius: 5px;
 }
 .item-info {
-  font-size: 17px;
-  color: #333;
-  padding: 5px 10px;
+  font-size: 18px;
+  padding: 5px;
   position: relative;
   overflow: hidden;
 }
-.item-info .item-desc {
+.item-desc {
   font-size: 14px;
   color: #666;
   margin-top: 15px;
 }
-.info-bottom {
-  margin-top: 10px;
-  position: absolute;
-  bottom: 8px;
-  left: 5px;
-  right: 5px;
-  height: 3vh;
+.item-title, .item-desc {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-.info-bottom .item-price {
+.item-bottom {
+  margin-top: 25px;
+  min-height: 20px;
+  display: flex;
+}
+.item-price {
+  font-size: 20px;
   color: orangered;
 }
-.info-bottom .countButton {
-  width: 3vw;
-  text-align:center;
+.item-count {
+  position: absolute;
+  right: 10px;
+}
+.countButt {
+  width: 20px;
+  display: inline-block;
+  text-align: center;
 }
 </style>
