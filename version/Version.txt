@@ -1,0 +1,6 @@
+version 1.0   2021/08/14
+version 2.0   2021/08/15
+version 2.1   2021/08/16   解决小bug
+version 2.2   2021/09/21   使用 sessionStorage 存储客户端数据，更新接口，解决小bug
+version 3.0   2021/11/28   添加搜索功能，完善购物车功能并添加删除功能，解决小bug
+
